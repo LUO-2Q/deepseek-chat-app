@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老王 AI 对话助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 左侧边栏 -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-robot logo-icon"></i> 老王AI
+            </div>
+            
+            <button class="new-chat-btn sidebar-btn">
+                <i class="fa-solid fa-plus"></i> 开启新对话
+            </button>
+            
+            <div class="history-section">
+                <div class="history-header">今天</div>
+                <div class="chat-history">
+                    <div class="history-item active">
+                        <span>新对话</span>
+                        <button class="options-btn"><i class="fa-solid fa-ellipsis"></i></button>
+                    </div>
+                    <!-- 历史对话项将在这里动态添加 -->
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="avatar">个</div>
+                    <span>个人信息</span>
+                </div>
+                <button id="api-settings-btn" class="sidebar-btn">
+                    <i class="fa-solid fa-key"></i> API设置
+                </button>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <div class="header">
+                <div class="current-chat-title">新对话</div>
+                <div class="theme-toggle">
+                    <button id="theme-switch" class="theme-switch-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <!-- 浮动装饰元素 -->
+                <div class="floating-dots">
+                    <div class="dot dot-1"></div>
+                    <div class="dot dot-2"></div>
+                    <div class="dot dot-3"></div>
+                </div>
+                
+                <!-- 聊天消息区域 -->
+                <div class="chat-messages" id="chat-messages">
+                    <!-- 默认欢迎消息将在JS中添加 -->
+                </div>
+                
+                <!-- 空白状态 - 新对话 -->
+                <div class="empty-state" id="empty-state">
+                    <div class="logo-container">
+                        <div class="deep-logo">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                    </div>
+                    <div class="empty-title">AI 聊天助手</div>
+                    <div class="empty-subtitle">基于先进的大语言模型</div>
+                    <button class="new-chat-btn main-btn">
+                        <i class="fa-solid fa-plus"></i> 开启新对话
+                    </button>
+                </div>
+                
+                <!-- 输入区域 -->
+                <div class="chat-input-wrapper">
+                    <div class="input-container">
+                        <div class="model-selector">
+                            <button class="model-btn">
+                                <i class="fa-solid fa-microchip"></i> 深度思考 (R1)
+                            </button>
+                            <button class="web-search-btn">
+                                <i class="fa-solid fa-globe"></i> 联网搜索
+                            </button>
+                        </div>
+                        
+                        <!-- 文件上传预览区域 -->
+                        <div id="file-preview-container" class="file-preview-container">
+                            <!-- 文件预览内容将通过JS动态添加 -->
+                        </div>
+                        
+                        <!-- 将文本区域和按钮包含在一个水平排列的容器中 -->
+                        <div class="input-row">
+                            <textarea id="user-input" placeholder="DeepSeek 发送消息" rows="1"></textarea>
+                            
+                            <button id="upload-button">
+                                <i class="fa-solid fa-paperclip"></i>
+                            </button>
+                            
+                            <button id="send-button" onclick="sendMessageDirectly()">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- 隐藏的文件输入 -->
+                        <input type="file" id="file-input" style="display: none;" multiple>
+                    </div>
+                    <div class="input-footer">
+                        <span class="disclaimer">内容由 AI 生成，请仔细验别</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API设置对话框 -->
+    <div id="api-settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>API设置</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="api-key-input">火山引擎 API Key</label>
+                    <input type="password" id="api-key-input" placeholder="输入您的API Key">
+                    <small>您的API Key将安全地存储在本地浏览器中</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-api-settings" class="btn primary-btn">保存</button>
+                <button class="btn cancel-btn close-modal">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
