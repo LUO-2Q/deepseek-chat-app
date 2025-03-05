@@ -33,7 +33,7 @@ const defaultChat = {
 };
 
 // API配置 - 火山引擎API
-const ENV = 'development'; // 可改为'production'以使用真实API
+const ENV = 'production'; // 可改为'production'以使用真实API
 const USE_CORS_PROXY = ENV === 'development';  // 开发环境使用CORS代理
 
 // 代理和端点配置
